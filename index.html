@@ -23,7 +23,8 @@
     // 🧠 Example of usage:
     // buildPeter() // should return { firstName: "Peter", lastName: "Pan", age: 12 }
     function buildPeter() {
-
+        let person = { firstName: "Peter", lastName: "Pan", age: 12};
+        return person;
     }
 
     // 👉 CHALLENGE 2
@@ -31,7 +32,12 @@
     // 🧠 Example of usage:
     // buildUser("John", "Smith", 30) // should return { firstName: "John", lastName: "Smith", age: 30 }
     function buildUser(firstName, lastName, age) {
+          let user;
+          
 
+          user =  { firstName: firstName, lastName: lastName, age: age };
+
+          return user;
     }
 
     // 👉 CHALLENGE 3
@@ -42,8 +48,17 @@
     // 🧠 Examples of usage:
     // deletePrice({ item: "Tesla Model 3", price: 40000 }) // should return { item: "Tesla Model 3" }
     // deletePrice({ item: "Kobo Libra 2" }) // should return { item: "Kobo Libra 2", priceless: true }
-    function deletePrice() {
+    function deletePrice(obj) {
+      if ("price" in obj) {
+    // If it does, delete the "price" property
+    delete obj.price;
+  } else {
+    // If it doesn't, add a "priceless" property with a value of true
+    obj.priceless = true;
+  }
 
+  // Return the modified object
+  return obj;
     }
 
     // 👉 CHALLENGE 4
@@ -53,7 +68,7 @@
     // evenList(['a']) // should return false
     // evenList(['a', 'b']) // should return true
     function evenList(arr) {
-
+      return arr.length % 2 === 0;
     }
 
     // 👉 CHALLENGE 5
@@ -62,8 +77,12 @@
     // 🧠 Examples of usage:
     // firstOrLast(['a', 'b'], true) // should return 'a'
     // firstOrLast(['a', 'b'], false) // should return 'b'
-    function firstOrLast() {
-
+    function firstOrLast(array, isFirst) {
+      if (isFirst) {
+    return array[0];
+  } else {
+    return array[array.length - 1];
+  }
     }
 
     // 👉 CHALLENGE 6
@@ -72,8 +91,9 @@
     // 🧠 Examples of usage:
     // pushElement([], 1) // should return [1]
     // pushElement(['a', 'b'], 'c') // should return ['a', 'b', 'c']
-    function pushElement() {
-
+    function pushElement(array, value) {
+      array.push(value);
+  return array;
     }
 
     // 👉 CHALLENGE 7
@@ -88,8 +108,26 @@
     // 🧠 At each iteration of the loop, if the current character is not "x", then add it to the end of the result array.
     // 🧠 You can merge the result array back into a string by using join. Example: ["f", "o", "o"].join("") yields "foo"
     // 🧠 Do not forget to return your rejoined string!
-    function stripX() {
+    function stripX(inputString) {
+        // Split the given string into an array of characters
+    let charArray = inputString.split("");
 
+// Create an empty result array
+let resultArray = [];
+
+// Loop over the characters
+for (let i = 0; i < charArray.length; i++) {
+    // If the current character is not "x", add it to the result array
+    if (charArray[i] !== "x") {
+        resultArray.push(charArray[i]);
+    }
+}
+
+// Merge the result array back into a string using join
+let resultString = resultArray.join("");
+
+// Return the rejoined string
+return resultString;
     }
 
     // 👉 CHALLENGE 8
@@ -101,8 +139,9 @@
     // ❗ Important Notes:
     // 🧠 Try to solve this problem without looking at how you solved the previous one.
     // 🧠 If you need to look, do not copy & paste code. Take a peek and then work from memory!
-    function stripChar() {
-
+    function stripChar(inputString, charToRemove) {
+      const resultString = inputString.replace(new RegExp(charToRemove, 'g'), '');
+  return resultString;
     }
 
     // 👉 CHALLENGE 9
@@ -114,8 +153,14 @@
     // getProps({ lastName: "Smith", age: 35 }) // should return ["lastName"]
     // getProps({ firstName: "Jane", married: false }) // should return ["firstName"]
     // getProps({ name: "Bamby", favFood: "flowers" }) // should return ["name", "favFood"]
-    function getProps() {
+    function getProps(obj) {
+        // Get all property names of the object
+  const allProps = Object.keys(obj);
 
+// Filter out "age" and "married" properties
+const filteredProps = allProps.filter(prop => prop !== 'age' && prop !== 'married');
+
+return filteredProps;
     }
 
     // 🧪 TESTS, do not work below this line
